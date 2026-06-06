@@ -42,12 +42,15 @@ function initPhotosMarquee() {
   const halfCount = Math.floor(items.length / 2);
   if (halfCount === 0) return;
 
-  const loopDurationMs = 80000;
+  const loopDurationMs = 90000;
   let loopWidth = 0;
-  let isPaused = false;
+  let offset = 0;
+  let isDragging = false;
   let resumeTimer = null;
   let lastFrameTime = performance.now();
   let rafId = null;
+  let dragStartX = 0;
+  let dragStartOffset = 0;
 
   function measureLoopWidth() {
     const loopStart = items[0];
@@ -56,34 +59,56 @@ function initPhotosMarquee() {
     return loopRepeat.offsetLeft - loopStart.offsetLeft;
   }
 
-  function normalizeScroll() {
+  function normalizeOffset() {
     if (loopWidth <= 0) return;
-    while (shell.scrollLeft >= loopWidth) {
-      shell.scrollLeft -= loopWidth;
-    }
-    while (shell.scrollLeft < 0) {
-      shell.scrollLeft += loopWidth;
-    }
+    while (offset >= loopWidth) offset -= loopWidth;
+    while (offset < 0) offset += loopWidth;
+  }
+
+  function applyOffset() {
+    track.style.transform = `translate3d(-${offset}px, 0, 0)`;
   }
 
   function pauseAutoScroll() {
-    isPaused = true;
     clearTimeout(resumeTimer);
   }
 
-  function scheduleResume(delay = 450) {
+  function scheduleResume(delay = 400) {
     clearTimeout(resumeTimer);
     resumeTimer = setTimeout(() => {
-      isPaused = false;
+      isDragging = false;
+      shell.classList.remove("is-dragging");
       lastFrameTime = performance.now();
     }, delay);
   }
 
+  function startDrag(clientX) {
+    isDragging = true;
+    shell.classList.add("is-dragging");
+    dragStartX = clientX;
+    dragStartOffset = offset;
+    pauseAutoScroll();
+  }
+
+  function moveDrag(clientX) {
+    if (!isDragging) return;
+    const delta = clientX - dragStartX;
+    offset = dragStartOffset - delta;
+    normalizeOffset();
+    applyOffset();
+  }
+
+  function endDrag() {
+    if (!isDragging) return;
+    scheduleResume();
+  }
+
   function tick(now) {
-    if (!isPaused && loopWidth > 0) {
+    if (!isDragging && loopWidth > 0) {
       const delta = now - lastFrameTime;
-      shell.scrollLeft += (loopWidth / loopDurationMs) * delta;
-      normalizeScroll();
+      offset += (loopWidth / loopDurationMs) * delta;
+      normalizeOffset();
+      applyOffset();
     }
     lastFrameTime = now;
     rafId = requestAnimationFrame(tick);
@@ -91,25 +116,42 @@ function initPhotosMarquee() {
 
   function refreshMarquee() {
     loopWidth = measureLoopWidth();
-    normalizeScroll();
+    normalizeOffset();
+    applyOffset();
   }
 
-  shell.addEventListener("touchstart", pauseAutoScroll, { passive: true });
-  shell.addEventListener("touchmove", pauseAutoScroll, { passive: true });
-  shell.addEventListener("touchend", () => scheduleResume(), { passive: true });
-  shell.addEventListener("touchcancel", () => scheduleResume(), { passive: true });
-  shell.addEventListener("pointerdown", pauseAutoScroll);
-  shell.addEventListener("pointerup", () => scheduleResume());
-  shell.addEventListener("pointercancel", () => scheduleResume());
-  shell.addEventListener("scroll", normalizeScroll, { passive: true });
+  shell.addEventListener(
+    "touchstart",
+    (event) => {
+      if (event.touches.length !== 1) return;
+      startDrag(event.touches[0].clientX);
+    },
+    { passive: true }
+  );
 
-  if (window.matchMedia("(hover: hover)").matches) {
-    shell.addEventListener("mouseenter", pauseAutoScroll);
-    shell.addEventListener("mouseleave", () => {
-      isPaused = false;
-      lastFrameTime = performance.now();
-    });
-  }
+  shell.addEventListener(
+    "touchmove",
+    (event) => {
+      if (event.touches.length !== 1) return;
+      moveDrag(event.touches[0].clientX);
+    },
+    { passive: true }
+  );
+
+  shell.addEventListener("touchend", endDrag, { passive: true });
+  shell.addEventListener("touchcancel", endDrag, { passive: true });
+
+  shell.addEventListener("mousedown", (event) => {
+    if (event.button !== 0) return;
+    event.preventDefault();
+    startDrag(event.clientX);
+  });
+
+  window.addEventListener("mousemove", (event) => {
+    moveDrag(event.clientX);
+  });
+
+  window.addEventListener("mouseup", endDrag);
 
   const images = track.querySelectorAll("img");
   let pendingImages = 0;

@@ -412,17 +412,16 @@ body {
 
 .demo-blank-photos-shell {
   width: 100%;
-  overflow-x: auto;
-  overflow-y: hidden;
-  -webkit-overflow-scrolling: touch;
-  touch-action: pan-x;
-  scrollbar-width: none;
+  overflow: hidden;
+  touch-action: pan-y;
+  cursor: grab;
   position: relative;
   padding: 6px 0;
 }
 
-.demo-blank-photos-shell::-webkit-scrollbar {
-  display: none;
+.demo-blank-photos-shell.is-dragging {
+  cursor: grabbing;
+  user-select: none;
 }
 
 .demo-blank-photos-shell::before,
@@ -449,6 +448,7 @@ body {
   display: flex;
   gap: 18px;
   width: max-content;
+  will-change: transform;
 }
 
 .demo-blank-photo {
