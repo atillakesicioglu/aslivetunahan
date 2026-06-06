@@ -199,8 +199,12 @@ function initIntro() {
   video.currentTime = 0;
   music.pause();
 
+  const fadeStartSec = 2;
+  const fadeEndSec = 3;
+
   let started = false;
   let finished = false;
+  let fadeStarted = false;
 
   function lockScroll() {
     document.documentElement.classList.add("intro-lock");
@@ -210,6 +214,9 @@ function initIntro() {
   function unlockScroll() {
     document.documentElement.classList.remove("intro-lock");
     document.body.classList.remove("intro-lock");
+    document.body.style.removeProperty("top");
+    document.body.style.removeProperty("width");
+    window.scrollTo(0, 0);
   }
 
   function finishIntro() {
@@ -236,14 +243,29 @@ function initIntro() {
     }
 
     started = true;
+    fadeStarted = false;
+    video.classList.remove("is-fading-out");
+    overlay.classList.remove("is-video-visible");
     overlay.classList.add("is-playing");
     video.currentTime = 0;
+
+    const revealVideo = () => {
+      if (!overlay.classList.contains("is-video-visible")) {
+        overlay.classList.add("is-video-visible");
+      }
+    };
+
+    video.addEventListener("playing", revealVideo, { once: true });
 
     try {
       await video.play();
     } catch {
       finishIntro();
       return;
+    }
+
+    if (video.readyState >= 2) {
+      revealVideo();
     }
 
     try {
@@ -264,7 +286,21 @@ function initIntro() {
     startIntro();
   });
 
-  video.addEventListener("ended", finishIntro);
+  video.addEventListener("timeupdate", () => {
+    if (!started || finished) {
+      return;
+    }
+
+    if (video.currentTime >= fadeStartSec && !fadeStarted) {
+      fadeStarted = true;
+      video.classList.add("is-fading-out");
+    }
+
+    if (video.currentTime >= fadeEndSec) {
+      video.pause();
+      finishIntro();
+    }
+  });
 
   if (musicToggle) {
     musicToggle.addEventListener("click", () => {

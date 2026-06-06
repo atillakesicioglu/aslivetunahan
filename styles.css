@@ -13,6 +13,15 @@ html,
 body {
   margin: 0;
   background: #eef3f1;
+  overflow-x: hidden;
+  max-width: 100%;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+html::-webkit-scrollbar,
+body::-webkit-scrollbar {
+  display: none;
 }
 
 html.intro-lock,
@@ -58,7 +67,7 @@ body.intro-lock {
   background-image: url("assets/botanical-intro-poster.webp");
   background-size: cover;
   background-position: center;
-  filter: blur(14px);
+  filter: blur(11px);
   transform: scale(1.06);
   pointer-events: none;
 }
@@ -92,6 +101,10 @@ body.intro-lock {
   transition: opacity 0.35s ease;
 }
 
+.intro-overlay.is-playing {
+  padding: 0;
+}
+
 .intro-envelope-video {
   position: absolute;
   inset: 0;
@@ -99,17 +112,37 @@ body.intro-lock {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  object-position: center center;
   opacity: 0;
   pointer-events: none;
-  transition: opacity 0.3s ease;
-}
-
-.intro-overlay.is-playing .intro-envelope-video {
-  opacity: 1;
 }
 
 .intro-overlay.is-playing .intro-tap-prompt {
   opacity: 0;
+  visibility: hidden;
+  transition: none;
+}
+
+.intro-overlay.is-video-visible {
+  background: transparent;
+}
+
+.intro-overlay.is-video-visible .intro-backdrop {
+  opacity: 0;
+}
+
+.intro-overlay.is-video-visible::after {
+  opacity: 0;
+}
+
+.intro-overlay.is-video-visible .intro-envelope-video {
+  opacity: 1;
+  transition: opacity 0.2s ease;
+}
+
+.intro-overlay.is-video-visible .intro-envelope-video.is-fading-out {
+  opacity: 0;
+  transition: opacity 1s ease;
 }
 
 .demo-music-toggle {
@@ -483,7 +516,7 @@ body.intro-lock {
 
 .demo-vintage-countdown-divider img {
   width: 100%;
-  max-width: 100vw;
+  max-width: 100%;
   height: auto;
   display: block;
 }
@@ -552,11 +585,11 @@ body.intro-lock {
 .demo-floral-divider::before {
   content: "";
   position: absolute;
-  left: 50%;
+  left: 0;
+  right: 0;
   top: 0;
-  width: 100vw;
+  width: 100%;
   height: 1px;
-  transform: translateX(-50%);
   background: rgba(247, 253, 248, 0.35);
   pointer-events: none;
 }
@@ -1347,14 +1380,38 @@ body.intro-lock {
     border-width: 2px;
   }
 
+  .intro-overlay {
+    padding-inline: 36px;
+  }
+
+  .intro-overlay.is-playing {
+    inset: 0;
+    width: auto;
+    height: 100dvh;
+    height: 100svh;
+    min-height: -webkit-fill-available;
+    padding: 0;
+  }
+
+  .intro-overlay.is-playing .intro-envelope-video {
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    min-height: 100%;
+    min-width: 100%;
+    transform: none;
+  }
+
   .intro-overlay::after {
     background: rgba(52, 44, 27, 0.48);
   }
 
   .intro-tap-prompt {
-    font-size: clamp(21px, 6.5vw, 30px);
+    max-width: 100%;
+    padding-inline: 4px;
+    font-size: clamp(16px, 4.6vw, 26px);
     font-weight: 500;
-    letter-spacing: 0.05em;
+    letter-spacing: 0.03em;
     text-shadow:
       0 3px 22px rgba(0, 0, 0, 0.65),
       0 2px 6px rgba(0, 0, 0, 0.5);
