@@ -63,19 +63,31 @@ body.intro-lock {
   pointer-events: none;
 }
 
+.intro-overlay::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: rgba(52, 44, 27, 0.38);
+  pointer-events: none;
+}
+
 .intro-tap-prompt {
   position: relative;
   z-index: 2;
   margin: 0;
-  max-width: min(320px, 82vw);
   text-align: center;
-  color: #342c1b;
+  color: #f7fdf8;
   font-family: var(--hero-cormorant);
-  font-size: clamp(17px, 4.2vw, 22px);
+  font-size: clamp(22px, 4.8vw, 34px);
   font-style: italic;
-  letter-spacing: 0.04em;
-  line-height: 1.5;
-  text-shadow: 0 1px 12px rgba(243, 238, 230, 0.85);
+  font-weight: 400;
+  letter-spacing: 0.06em;
+  line-height: 1;
+  white-space: nowrap;
+  text-shadow:
+    0 2px 18px rgba(0, 0, 0, 0.55),
+    0 1px 4px rgba(0, 0, 0, 0.45);
   pointer-events: none;
   transition: opacity 0.35s ease;
 }
@@ -1333,6 +1345,19 @@ body.intro-lock {
   .demo-blank-rsvp-form input,
   .demo-blank-rsvp-form textarea {
     border-width: 2px;
+  }
+
+  .intro-overlay::after {
+    background: rgba(52, 44, 27, 0.48);
+  }
+
+  .intro-tap-prompt {
+    font-size: clamp(21px, 6.5vw, 30px);
+    font-weight: 500;
+    letter-spacing: 0.05em;
+    text-shadow:
+      0 3px 22px rgba(0, 0, 0, 0.65),
+      0 2px 6px rgba(0, 0, 0, 0.5);
   }
 }
 
