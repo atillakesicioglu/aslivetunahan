@@ -404,10 +404,23 @@ body {
 }
 
 .demo-floral-divider {
-  width: min(860px, 92vw);
-  height: 1px;
-  background: rgba(247, 253, 248, 0.35);
+  position: relative;
+  width: 100%;
+  height: 0;
   margin: 0;
+  background: transparent;
+}
+
+.demo-floral-divider::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 0;
+  width: 100vw;
+  height: 1px;
+  transform: translateX(-50%);
+  background: rgba(247, 253, 248, 0.35);
+  pointer-events: none;
 }
 
 .demo-blank-photos-shell {
