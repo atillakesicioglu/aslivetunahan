@@ -245,24 +245,61 @@
       </div>
     </section>
 
-    <section class="demo-floral-dark-section" id="gifts">
-      <div class="demo-floral-divider-heart" aria-hidden="true">
-        <span class="demo-floral-divider-heart-line"></span>
-        <span class="demo-floral-divider-heart-icon">♥</span>
-        <span class="demo-floral-divider-heart-line"></span>
-      </div>
-
-      <div class="demo-floral-gifts-block">
-        <h3 class="demo-floral-gifts-title">Hediyeler</h3>
-        <p class="demo-floral-gifts-note">
-          Varlığınız bizim için en değerli hediye. Dilerseniz aşağıdaki IBAN bilgisini kullanabilirsiniz.
-        </p>
-        <button type="button" class="demo-floral-gifts-btn" id="ibanToggle">IBAN'ı göster</button>
-        <div class="demo-floral-iban-card" id="ibanCard" hidden>
-          <p><strong>Aslı &amp; Tunahan</strong></p>
-          <p class="demo-floral-iban-value">TR00 0000 0000 0000 0000 0000 00</p>
+    <section class="demo-floral-dark-section" id="faq">
+      <div class="demo-floral-faq">
+        <h3>Sıkça Sorulan Sorular</h3>
+        <div class="demo-floral-faq-list">
+          <div class="demo-floral-faq-item">
+            <h4>Otopark var mı?</h4>
+            <p>Evet, mekan bünyesinde misafir otoparkı bulunuyor.</p>
+          </div>
+          <div class="demo-floral-faq-item">
+            <h4>Çocuklar davetli mi?</h4>
+            <p>Detaylar için bizimle iletişime geçebilirsiniz.</p>
+          </div>
         </div>
       </div>
+
+      <form class="demo-floral-faq-form demo-blank-rsvp-form" id="rsvpForm" novalidate>
+        <label>
+          Ad Soyad *
+          <input type="text" name="name" placeholder="Adınız Soyadınız" autocomplete="name" required />
+        </label>
+
+        <fieldset class="demo-blank-rsvp-fieldset">
+          <legend>Katılım *</legend>
+          <label class="demo-blank-rsvp-radio">
+            <input type="radio" name="attendance" value="yes" required />
+            Evet, katılacağım
+          </label>
+          <label class="demo-blank-rsvp-radio">
+            <input type="radio" name="attendance" value="no" />
+            Katılamayacağım
+          </label>
+        </fieldset>
+
+        <label>
+          Davetli sayısı (siz dahil)
+          <input type="number" name="guests" min="1" max="20" value="1" inputmode="numeric" />
+        </label>
+
+        <label>
+          Mesaj
+          <textarea name="message" rows="4" placeholder="Mesajınızı yazın"></textarea>
+        </label>
+
+        <button type="submit">Gönder</button>
+      </form>
+    </section>
+
+    <section class="demo-floral-footer-section" id="footer">
+      <div class="demo-floral-divider" aria-hidden="true"></div>
+      <footer class="demo-floral-footer">
+        <span class="demo-floral-footer-heart" aria-hidden="true">♥</span>
+        <h3>Aslı &amp; Tunahan</h3>
+        <p>25 TEMMUZ 2026</p>
+        <p class="demo-floral-footer-made">Made with love</p>
+      </footer>
     </section>
 
     <script src="script.js"></script>

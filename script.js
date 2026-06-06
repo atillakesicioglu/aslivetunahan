@@ -175,21 +175,18 @@ function initPhotosMarquee() {
   });
 }
 
-function initIbanToggle() {
-  const button = document.getElementById("ibanToggle");
-  const card = document.getElementById("ibanCard");
-  if (!button || !card) return;
+function initRsvpForm() {
+  const form = document.getElementById("rsvpForm");
+  if (!form) return;
 
-  button.addEventListener("click", () => {
-    const willShow = card.hidden;
-    card.hidden = !willShow;
-    button.textContent = willShow ? "IBAN'ı gizle" : "IBAN'ı göster";
+  form.addEventListener("submit", (event) => {
+    event.preventDefault();
   });
 }
 
 function initPage() {
   initPhotosMarquee();
-  initIbanToggle();
+  initRsvpForm();
 }
 
 if (document.readyState === "loading") {

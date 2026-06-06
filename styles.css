@@ -891,40 +891,14 @@ body {
   color: rgba(247, 253, 248, 0.85);
 }
 
-/* Kalp ayırıcı */
-.demo-floral-divider-heart {
-  width: min(680px, 92vw);
-  display: flex;
-  align-items: center;
-  gap: 14px;
-  color: rgba(247, 253, 248, 0.75);
-}
-
-.demo-floral-divider-heart-line {
-  flex: 1;
-  height: 1px;
-  background: linear-gradient(
-    90deg,
-    rgba(247, 253, 248, 0),
-    rgba(247, 253, 248, 0.45) 40% 60%,
-    rgba(247, 253, 248, 0)
-  );
-}
-
-.demo-floral-divider-heart-icon {
-  font-size: 14px;
-  line-height: 1;
-  opacity: 0.8;
-}
-
-/* Hediyeler */
-.demo-floral-gifts-block {
+/* SSS */
+.demo-floral-faq {
   width: min(820px, 92vw);
   text-align: center;
   color: #f7fdf8;
 }
 
-.demo-floral-gifts-title {
+.demo-floral-faq h3 {
   margin: 0;
   font-family: var(--hero-playfair);
   font-size: clamp(28px, 5vw, 35px);
@@ -934,9 +908,30 @@ body {
   color: #f7fdf8;
 }
 
-.demo-floral-gifts-note {
-  margin: 12px auto 0;
-  max-width: 720px;
+.demo-floral-faq-list {
+  margin-top: 18px;
+  display: grid;
+  gap: 14px;
+}
+
+.demo-floral-faq-item {
+  border: 1px solid rgba(247, 253, 248, 0.35);
+  padding: 16px 18px;
+  background: transparent;
+}
+
+.demo-floral-faq-item h4 {
+  margin: 0 0 8px;
+  font-family: var(--hero-cormorant);
+  font-size: clamp(14px, 2vw, 16px);
+  font-style: normal;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #f7fdf8;
+}
+
+.demo-floral-faq-item p {
+  margin: 0;
   font-family: var(--hero-cormorant);
   font-size: clamp(16px, 2.2vw, 20px);
   font-style: italic;
@@ -944,11 +939,92 @@ body {
   color: rgba(247, 253, 248, 0.85);
 }
 
-.demo-floral-gifts-btn {
-  margin-top: 18px;
-  padding: 12px 24px;
+/* RSVP form */
+.demo-floral-faq-form {
+  margin-top: clamp(24px, 5vw, 45px);
+  width: min(520px, 92vw);
+}
+
+.demo-blank-rsvp-form {
+  background: transparent;
+  border: 2px solid rgba(247, 253, 248, 0.55);
+  border-radius: 0;
+  padding: clamp(18px, 4vw, 28px);
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.demo-blank-rsvp-form label {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  font-family: var(--hero-cormorant);
+  font-size: clamp(16px, 2.2vw, 20px);
+  font-style: italic;
+  color: #f7fdf8;
+}
+
+.demo-blank-rsvp-form input,
+.demo-blank-rsvp-form textarea {
+  border: 1px solid rgba(247, 253, 248, 0.45);
+  background: rgba(247, 253, 248, 0.04);
+  border-radius: 0;
+  padding: 10px 12px;
   font-family: var(--hero-cormorant);
   font-size: clamp(15px, 2vw, 18px);
+  font-style: italic;
+  color: #f7fdf8;
+}
+
+.demo-blank-rsvp-form input::placeholder,
+.demo-blank-rsvp-form textarea::placeholder {
+  color: rgba(247, 253, 248, 0.45);
+}
+
+.demo-blank-rsvp-form input[type="number"] {
+  width: 80px;
+}
+
+.demo-blank-rsvp-fieldset {
+  border: 0;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  font-family: var(--hero-cormorant);
+  font-size: clamp(16px, 2.2vw, 20px);
+  font-style: italic;
+  color: #f7fdf8;
+}
+
+.demo-blank-rsvp-fieldset legend {
+  margin-bottom: 4px;
+  padding: 0;
+}
+
+.demo-blank-rsvp-radio {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+}
+
+.demo-blank-rsvp-form input[type="radio"] {
+  width: 14px;
+  height: 14px;
+  margin: 0;
+  accent-color: #f7fdf8;
+}
+
+.demo-blank-rsvp-form button {
+  margin-top: 6px;
+  padding: 12px 24px;
+  font-family: var(--hero-cormorant);
+  font-size: clamp(16px, 2.2vw, 19px);
   font-style: italic;
   letter-spacing: 0.04em;
   border: 1px solid rgba(247, 253, 248, 0.7);
@@ -958,33 +1034,56 @@ body {
   transition: background-color 0.2s ease;
 }
 
-.demo-floral-gifts-btn:hover {
+.demo-blank-rsvp-form button:hover {
   background: rgba(247, 253, 248, 0.08);
 }
 
-.demo-floral-iban-card {
-  margin: 18px auto 0;
-  width: min(520px, 92vw);
-  border: 1px solid rgba(247, 253, 248, 0.35);
-  padding: 14px 18px;
-  text-align: center;
+/* Footer */
+.demo-floral-footer-section {
+  background-color: #342c1b;
+  padding: clamp(24px, 5vw, 40px) 0 clamp(32px, 6vw, 48px);
   display: grid;
-  gap: 8px;
+  justify-items: center;
+  gap: clamp(20px, 4vw, 28px);
 }
 
-.demo-floral-iban-card[hidden] {
-  display: none !important;
+.demo-floral-footer {
+  text-align: center;
+  color: #f7fdf8;
+  padding: 0 16px;
 }
 
-.demo-floral-iban-card p {
+.demo-floral-footer-heart {
+  display: inline-block;
+  margin-bottom: 10px;
+  font-size: 18px;
+  color: rgba(247, 253, 248, 0.8);
+}
+
+.demo-floral-footer h3 {
+  margin: 0 0 10px;
+  font-family: var(--hero-gwendolyn);
+  font-size: clamp(28px, 6vw, 40px);
+  font-style: italic;
+  font-weight: 400;
+  color: #f7fdf8;
+}
+
+.demo-floral-footer > p {
   margin: 0;
   font-family: var(--hero-cormorant);
-  font-size: clamp(15px, 2vw, 18px);
-  font-style: italic;
-  color: rgba(247, 253, 248, 0.9);
+  font-size: clamp(13px, 2vw, 16px);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(247, 253, 248, 0.85);
 }
 
-.demo-floral-iban-value {
-  letter-spacing: 0.06em;
+.demo-floral-footer-made {
+  margin-top: 14px !important;
+  font-size: clamp(12px, 1.8vw, 14px) !important;
+  letter-spacing: 0.04em !important;
+  text-transform: none !important;
+  font-style: italic;
+  color: rgba(247, 253, 248, 0.65) !important;
 }
 
