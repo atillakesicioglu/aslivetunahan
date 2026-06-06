@@ -603,3 +603,380 @@ body {
   background: rgba(247, 253, 248, 0.08);
 }
 
+/* Koyu arka plan bölümleri */
+.demo-floral-dark-section {
+  background-color: #342c1b;
+  padding: clamp(28px, 5vw, 48px) 0;
+  display: grid;
+  justify-items: center;
+  gap: clamp(16px, 3vw, 28px);
+  color: #f7fdf8;
+}
+
+/* Düğün akışı */
+.demo-vintage-timeline-block {
+  width: min(860px, 92vw);
+  max-width: 100%;
+  text-align: center;
+}
+
+.demo-vintage-timeline-block h2 {
+  margin: 0;
+  font-family: var(--hero-playfair);
+  font-size: clamp(28px, 5vw, 35px);
+  font-style: italic;
+  font-weight: 500;
+  letter-spacing: 0.3px;
+  color: #f7fdf8;
+}
+
+.demo-vintage-dots {
+  display: grid;
+  --dot-size: 56px;
+  --dot-gap: 14px;
+  --dot-line: rgba(247, 253, 248, 0.4);
+  --pill-height: 36px;
+  grid-template-columns: repeat(var(--timeline-cols, 6), minmax(0, 1fr));
+  gap: var(--dot-gap);
+  margin-top: clamp(32px, 5vw, 55px);
+  align-items: start;
+  justify-items: center;
+  width: 100%;
+}
+
+.demo-vintage-dot-item {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  text-align: center;
+  width: 100%;
+  position: relative;
+}
+
+.demo-vintage-dot-pill {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 72px;
+  height: var(--pill-height);
+  padding: 0 14px;
+  border-radius: 0;
+  border: 1px solid rgba(247, 253, 248, 0.65);
+  background: transparent;
+  color: #f7fdf8;
+  font-family: var(--hero-cormorant);
+  font-size: clamp(14px, 2vw, 18px);
+  font-style: italic;
+  letter-spacing: 0.06em;
+}
+
+.demo-vintage-dot {
+  width: var(--dot-size);
+  height: var(--dot-size);
+  border-radius: 50%;
+  border: 1px solid rgba(247, 253, 248, 0.65);
+  background: transparent;
+  position: relative;
+  z-index: 1;
+}
+
+.demo-vintage-dot.has-icon {
+  display: grid;
+  place-items: center;
+}
+
+.demo-vintage-dot.has-icon img {
+  width: 28px;
+  height: 28px;
+  display: block;
+}
+
+.demo-vintage-dot-item::after {
+  content: "";
+  position: absolute;
+  top: calc(var(--pill-height) + 16px + (var(--dot-size) / 2));
+  left: 50%;
+  width: calc(100% + var(--dot-gap));
+  height: 1px;
+  background: var(--dot-line);
+  z-index: 0;
+}
+
+.demo-vintage-dot-item:last-child::after {
+  display: none;
+}
+
+.demo-vintage-dot-text {
+  display: grid;
+  gap: 6px;
+  max-width: 100%;
+  width: 100%;
+  min-width: 0;
+}
+
+.demo-vintage-dot-title {
+  font-family: var(--hero-cormorant);
+  font-size: clamp(13px, 1.8vw, 18px);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #f7fdf8;
+}
+
+.demo-vintage-dot-desc {
+  font-family: var(--hero-cormorant);
+  font-size: clamp(13px, 1.7vw, 16px);
+  font-style: italic;
+  line-height: 1.5;
+  color: rgba(247, 253, 248, 0.8);
+}
+
+@media (max-width: 900px) {
+  .demo-vintage-dots {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 20px;
+  }
+
+  .demo-vintage-dot-item:nth-child(3)::after {
+    display: none;
+  }
+}
+
+@media (max-width: 640px) {
+  .demo-vintage-dots {
+    grid-template-columns: 1fr;
+    gap: 32px;
+    justify-items: start;
+    position: relative;
+    padding-top: calc(var(--pill-height) + 16px + (var(--dot-size) / 2));
+    padding-bottom: calc(var(--dot-size) / 2);
+    --pill-mobile-width: 68px;
+  }
+
+  .demo-vintage-dots::before {
+    content: "";
+    position: absolute;
+    left: calc(var(--dot-size) / 2);
+    top: calc(var(--pill-height) + 16px + (var(--dot-size) / 2));
+    bottom: calc(var(--dot-size) / 2);
+    width: 1px;
+    background: var(--dot-line);
+  }
+
+  .demo-vintage-dot-item {
+    align-items: flex-start;
+    text-align: left;
+    display: grid;
+    grid-template-columns: auto 1fr;
+    column-gap: 14px;
+    row-gap: 8px;
+  }
+
+  .demo-vintage-dot-pill {
+    grid-column: 2;
+    grid-row: 1;
+    justify-self: start;
+    min-width: var(--pill-mobile-width);
+  }
+
+  .demo-vintage-dot {
+    grid-column: 1;
+    grid-row: 1;
+  }
+
+  .demo-vintage-dot-text {
+    text-align: left;
+    grid-column: 2;
+    grid-row: 1;
+    align-self: center;
+    padding-left: calc(var(--pill-mobile-width) + 24px);
+  }
+
+  .demo-vintage-dot-item::after {
+    display: none;
+  }
+}
+
+/* Çiçek ayırıcı */
+.demo-vintage-menu-divider {
+  display: flex;
+  justify-content: center;
+  background-color: #342c1b;
+  padding: clamp(12px, 3vw, 22px) 0;
+}
+
+.demo-vintage-menu-divider img {
+  width: min(340px, 60vw);
+  height: auto;
+  display: block;
+}
+
+/* Menü */
+.demo-floral-menu {
+  width: min(820px, 92vw);
+  border: 1px solid rgba(247, 253, 248, 0.45);
+  padding: clamp(36px, 7vw, 72px) clamp(18px, 4vw, 28px);
+  text-align: center;
+  color: #f7fdf8;
+}
+
+.demo-floral-menu h3 {
+  margin: 0 0 20px;
+  font-family: var(--hero-playfair);
+  font-size: clamp(28px, 5vw, 35px);
+  font-style: italic;
+  font-weight: 500;
+  letter-spacing: 0.3px;
+  color: #f7fdf8;
+}
+
+.demo-floral-menu p {
+  margin: 0 0 8px;
+  font-family: var(--hero-cormorant);
+  font-size: clamp(16px, 2.2vw, 20px);
+  font-style: italic;
+  line-height: 1.7;
+  color: rgba(247, 253, 248, 0.88);
+}
+
+.demo-floral-menu p:last-child {
+  margin-bottom: 0;
+}
+
+/* Ulaşım */
+.demo-floral-transport {
+  width: min(820px, 92vw);
+  text-align: center;
+  color: #f7fdf8;
+}
+
+.demo-floral-transport-dot {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  border: 1px solid rgba(247, 253, 248, 0.45);
+  background: transparent;
+  margin-bottom: 12px;
+}
+
+.demo-floral-transport-dot img {
+  width: 22px;
+  height: 22px;
+  display: block;
+}
+
+.demo-floral-transport h3 {
+  margin: 0;
+  font-family: var(--hero-playfair);
+  font-size: clamp(28px, 5vw, 35px);
+  font-style: italic;
+  font-weight: 500;
+  letter-spacing: 0.3px;
+  color: #f7fdf8;
+}
+
+.demo-floral-transport p {
+  margin: 10px 0 0;
+  font-family: var(--hero-cormorant);
+  font-size: clamp(16px, 2.2vw, 20px);
+  font-style: italic;
+  line-height: 1.7;
+  color: rgba(247, 253, 248, 0.85);
+}
+
+/* Kalp ayırıcı */
+.demo-floral-divider-heart {
+  width: min(680px, 92vw);
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  color: rgba(247, 253, 248, 0.75);
+}
+
+.demo-floral-divider-heart-line {
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    rgba(247, 253, 248, 0),
+    rgba(247, 253, 248, 0.45) 40% 60%,
+    rgba(247, 253, 248, 0)
+  );
+}
+
+.demo-floral-divider-heart-icon {
+  font-size: 14px;
+  line-height: 1;
+  opacity: 0.8;
+}
+
+/* Hediyeler */
+.demo-floral-gifts-block {
+  width: min(820px, 92vw);
+  text-align: center;
+  color: #f7fdf8;
+}
+
+.demo-floral-gifts-title {
+  margin: 0;
+  font-family: var(--hero-playfair);
+  font-size: clamp(28px, 5vw, 35px);
+  font-style: italic;
+  font-weight: 500;
+  letter-spacing: 0.3px;
+  color: #f7fdf8;
+}
+
+.demo-floral-gifts-note {
+  margin: 12px auto 0;
+  max-width: 720px;
+  font-family: var(--hero-cormorant);
+  font-size: clamp(16px, 2.2vw, 20px);
+  font-style: italic;
+  line-height: 1.7;
+  color: rgba(247, 253, 248, 0.85);
+}
+
+.demo-floral-gifts-btn {
+  margin-top: 18px;
+  padding: 12px 24px;
+  font-family: var(--hero-cormorant);
+  font-size: clamp(15px, 2vw, 18px);
+  font-style: italic;
+  letter-spacing: 0.04em;
+  border: 1px solid rgba(247, 253, 248, 0.7);
+  background: transparent;
+  color: #f7fdf8;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.demo-floral-gifts-btn:hover {
+  background: rgba(247, 253, 248, 0.08);
+}
+
+.demo-floral-iban-card {
+  margin: 18px auto 0;
+  width: min(520px, 92vw);
+  border: 1px solid rgba(247, 253, 248, 0.35);
+  padding: 14px 18px;
+  text-align: center;
+  display: grid;
+  gap: 8px;
+}
+
+.demo-floral-iban-card p {
+  margin: 0;
+  font-family: var(--hero-cormorant);
+  font-size: clamp(15px, 2vw, 18px);
+  font-style: italic;
+  color: rgba(247, 253, 248, 0.9);
+}
+
+.demo-floral-iban-value {
+  letter-spacing: 0.06em;
+}
+
