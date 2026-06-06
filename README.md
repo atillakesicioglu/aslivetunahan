@@ -4,29 +4,24 @@ Dijital düğün davetiyesi sitesi.
 
 ## Proje yapısı
 
-- `website/` — Canlı site (cPanel `public_html` buraya deploy edilir)
-  - `index.html`
-  - `styles.css`
-  - `script.js`
-  - `assets/` — Görseller ve videolar
-- `ornek/` — Referans CSS (geliştirme için)
+- `index.html`, `styles.css`, `script.js` — Canlı site (kök dizin)
+- `assets/` — Görseller ve videolar
+- `ornek/` — Referans CSS (sadece geliştirme, deploy edilmez)
 
-## cPanel + GitHub kurulumu
+## cPanel + GitHub
 
 1. cPanel → **Git Version Control** → **Create**
 2. Clone URL: `https://github.com/atillakesicioglu/aslivetunahan.git`
-3. Repository Path: örn. `aslivetunahan` (cPanel önerdiği yol)
-4. **Create** ile klonla
-5. **Manage** → **Pull or Deploy** → **Deploy HEAD Commit**
+3. **Manage** → **Pull or Deploy** → **Deploy HEAD Commit**
 
-`.cpanel.yml` dosyası `website/` içeriğini otomatik olarak `public_html/` altına kopyalar.
+`.cpanel.yml` site dosyalarını `public_html/` altına kopyalar (`ornek/` hariç).
 
-### Güncelleme akışı
+### Güncelleme
 
-1. Bilgisayarda değişiklik yap
-2. `git add .` → `git commit` → `git push`
-3. cPanel'de **Pull or Deploy** → **Update from Remote** → **Deploy HEAD Commit**
+```bash
+git add .
+git commit -m "mesaj"
+git push
+```
 
-## Yerel önizleme
-
-`website/index.html` dosyasını tarayıcıda aç veya `website` klasöründe basit bir HTTP sunucusu çalıştır.
+cPanel'de **Update from Remote** → **Deploy HEAD Commit**
