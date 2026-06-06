@@ -676,9 +676,10 @@ body {
   height: var(--dot-size);
   border-radius: 50%;
   border: 1px solid rgba(247, 253, 248, 0.65);
-  background: transparent;
+  background-color: #342c1b;
   position: relative;
-  z-index: 1;
+  z-index: 2;
+  isolation: isolate;
 }
 
 .demo-vintage-dot.has-icon {
@@ -690,6 +691,8 @@ body {
   width: 28px;
   height: 28px;
   display: block;
+  position: relative;
+  z-index: 1;
 }
 
 .demo-vintage-dot-item::after {
@@ -701,6 +704,7 @@ body {
   height: 1px;
   background: var(--dot-line);
   z-index: 0;
+  pointer-events: none;
 }
 
 .demo-vintage-dot-item:last-child::after {
@@ -966,6 +970,10 @@ body {
   text-align: center;
   display: grid;
   gap: 8px;
+}
+
+.demo-floral-iban-card[hidden] {
+  display: none !important;
 }
 
 .demo-floral-iban-card p {
