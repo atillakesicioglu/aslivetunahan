@@ -63,29 +63,19 @@ body.intro-lock {
   pointer-events: none;
 }
 
-.intro-poster {
-  position: relative;
-  z-index: 2;
-  width: min(300px, 76vw);
-  height: auto;
-  border-radius: 2px;
-  box-shadow: 0 18px 48px rgba(52, 44, 27, 0.28);
-  pointer-events: none;
-  transition: opacity 0.35s ease;
-}
-
 .intro-tap-prompt {
   position: relative;
   z-index: 2;
   margin: 0;
-  max-width: 280px;
+  max-width: min(320px, 82vw);
   text-align: center;
   color: #342c1b;
   font-family: var(--hero-cormorant);
-  font-size: clamp(15px, 3.8vw, 18px);
+  font-size: clamp(17px, 4.2vw, 22px);
   font-style: italic;
   letter-spacing: 0.04em;
-  line-height: 1.45;
+  line-height: 1.5;
+  text-shadow: 0 1px 12px rgba(243, 238, 230, 0.85);
   pointer-events: none;
   transition: opacity 0.35s ease;
 }
@@ -106,7 +96,6 @@ body.intro-lock {
   opacity: 1;
 }
 
-.intro-overlay.is-playing .intro-poster,
 .intro-overlay.is-playing .intro-tap-prompt {
   opacity: 0;
 }
