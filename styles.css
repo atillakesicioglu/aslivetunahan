@@ -1087,3 +1087,126 @@ body {
   color: rgba(247, 253, 248, 0.65) !important;
 }
 
+/* Mobil iyileştirmeler (hero hariç) */
+@media (max-width: 768px) {
+  .demo-blank-countdown-subtitle,
+  .demo-blank-countdown-label,
+  .demo-floral-story p,
+  .demo-blank-location-head p,
+  .demo-blank-location-time,
+  .demo-blank-location-btn,
+  .demo-vintage-dot-pill,
+  .demo-vintage-dot-title,
+  .demo-vintage-dot-desc,
+  .demo-floral-menu p,
+  .demo-floral-transport p,
+  .demo-floral-faq-item h4,
+  .demo-floral-faq-item p,
+  .demo-blank-rsvp-form label,
+  .demo-blank-rsvp-form input,
+  .demo-blank-rsvp-form textarea,
+  .demo-blank-rsvp-fieldset,
+  .demo-blank-rsvp-radio,
+  .demo-blank-rsvp-form button,
+  .demo-floral-footer > p,
+  .demo-floral-footer-made {
+    font-weight: 500;
+  }
+
+  .demo-blank-countdown-title,
+  .demo-floral-story h2,
+  .demo-blank-location-head h2,
+  .demo-vintage-timeline-block h2,
+  .demo-floral-menu h3,
+  .demo-floral-transport h3,
+  .demo-floral-faq h3,
+  .demo-floral-footer h3 {
+    font-weight: 600;
+  }
+
+  .demo-blank-countdown-value {
+    font-weight: 500;
+  }
+
+  .demo-floral-divider::before {
+    height: 1.5px;
+    background: rgba(247, 253, 248, 0.5);
+  }
+
+  .demo-blank-countdown-card:not(:last-child)::after {
+    width: 1.5px;
+    background: rgba(247, 253, 248, 0.55);
+  }
+
+  /* Lokasyon: alt alta + büyük */
+  .demo-floral-location {
+    grid-template-columns: 1fr;
+    --location-media-height: clamp(260px, 62vw, 340px);
+    gap: 16px;
+  }
+
+  .demo-blank-location-media,
+  .demo-blank-location-mapframe {
+    border-width: 2px;
+    border-color: rgba(247, 253, 248, 0.4);
+  }
+
+  .demo-blank-location-icon {
+    border-width: 2px;
+  }
+
+  /* Düğün akışı */
+  .demo-vintage-dots {
+    --dot-line: rgba(247, 253, 248, 0.62);
+  }
+
+  .demo-vintage-dot-pill,
+  .demo-vintage-dot {
+    border-width: 2px;
+    border-color: rgba(247, 253, 248, 0.78);
+  }
+
+  .demo-vintage-dot-item::after {
+    height: 2px;
+  }
+
+  .demo-vintage-dots::before {
+    width: 2px;
+  }
+
+  .demo-vintage-dot-title {
+    font-size: clamp(14px, 2vw, 17px);
+  }
+
+  .demo-vintage-dot-desc {
+    font-size: clamp(14px, 1.9vw, 17px);
+    color: rgba(247, 253, 248, 0.9);
+  }
+
+  /* Menü */
+  .demo-floral-menu {
+    border-width: 2px;
+    border-color: rgba(247, 253, 248, 0.58);
+  }
+
+  .demo-floral-menu p {
+    font-size: clamp(17px, 2.5vw, 21px);
+    color: rgba(247, 253, 248, 0.95);
+  }
+
+  .demo-floral-faq-item {
+    border-width: 2px;
+    border-color: rgba(247, 253, 248, 0.45);
+  }
+
+  .demo-blank-rsvp-form {
+    border-width: 2px;
+    border-color: rgba(247, 253, 248, 0.65);
+  }
+
+  .demo-blank-rsvp-form input,
+  .demo-blank-rsvp-form textarea {
+    border-width: 2px;
+  }
+}
+

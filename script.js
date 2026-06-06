@@ -42,7 +42,7 @@ function initPhotosMarquee() {
   const halfCount = Math.floor(items.length / 2);
   if (halfCount === 0) return;
 
-  const loopDurationMs = 90000;
+  const loopDurationMs = 85000;
   let loopWidth = 0;
   let offset = 0;
   let isDragging = false;
