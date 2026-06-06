@@ -32,8 +32,9 @@ updateCountdown();
 setInterval(updateCountdown, 1000);
 
 function initPhotosMarquee() {
+  const shell = document.querySelector(".demo-blank-photos-shell");
   const track = document.querySelector(".demo-blank-photos-track");
-  if (!track) return;
+  if (!shell || !track) return;
 
   const items = [...track.children];
   if (items.length === 0) return;
@@ -41,22 +42,73 @@ function initPhotosMarquee() {
   const halfCount = Math.floor(items.length / 2);
   if (halfCount === 0) return;
 
-  function setMarqueeOffset() {
+  const loopDurationMs = 80000;
+  let loopWidth = 0;
+  let isPaused = false;
+  let resumeTimer = null;
+  let lastFrameTime = performance.now();
+  let rafId = null;
+
+  function measureLoopWidth() {
     const loopStart = items[0];
     const loopRepeat = items[halfCount];
-    if (!loopStart || !loopRepeat) return;
+    if (!loopStart || !loopRepeat) return 0;
+    return loopRepeat.offsetLeft - loopStart.offsetLeft;
+  }
 
-    const offset = loopRepeat.offsetLeft - loopStart.offsetLeft;
-    if (offset > 0) {
-      track.style.setProperty("--marquee-offset", `-${offset}px`);
+  function normalizeScroll() {
+    if (loopWidth <= 0) return;
+    while (shell.scrollLeft >= loopWidth) {
+      shell.scrollLeft -= loopWidth;
+    }
+    while (shell.scrollLeft < 0) {
+      shell.scrollLeft += loopWidth;
     }
   }
 
+  function pauseAutoScroll() {
+    isPaused = true;
+    clearTimeout(resumeTimer);
+  }
+
+  function scheduleResume(delay = 450) {
+    clearTimeout(resumeTimer);
+    resumeTimer = setTimeout(() => {
+      isPaused = false;
+      lastFrameTime = performance.now();
+    }, delay);
+  }
+
+  function tick(now) {
+    if (!isPaused && loopWidth > 0) {
+      const delta = now - lastFrameTime;
+      shell.scrollLeft += (loopWidth / loopDurationMs) * delta;
+      normalizeScroll();
+    }
+    lastFrameTime = now;
+    rafId = requestAnimationFrame(tick);
+  }
+
   function refreshMarquee() {
-    setMarqueeOffset();
-    track.style.animation = "none";
-    void track.offsetWidth;
-    track.style.animation = "";
+    loopWidth = measureLoopWidth();
+    normalizeScroll();
+  }
+
+  shell.addEventListener("touchstart", pauseAutoScroll, { passive: true });
+  shell.addEventListener("touchmove", pauseAutoScroll, { passive: true });
+  shell.addEventListener("touchend", () => scheduleResume(), { passive: true });
+  shell.addEventListener("touchcancel", () => scheduleResume(), { passive: true });
+  shell.addEventListener("pointerdown", pauseAutoScroll);
+  shell.addEventListener("pointerup", () => scheduleResume());
+  shell.addEventListener("pointercancel", () => scheduleResume());
+  shell.addEventListener("scroll", normalizeScroll, { passive: true });
+
+  if (window.matchMedia("(hover: hover)").matches) {
+    shell.addEventListener("mouseenter", pauseAutoScroll);
+    shell.addEventListener("mouseleave", () => {
+      isPaused = false;
+      lastFrameTime = performance.now();
+    });
   }
 
   const images = track.querySelectorAll("img");
@@ -72,7 +124,13 @@ function initPhotosMarquee() {
   });
 
   refreshMarquee();
-  window.addEventListener("resize", setMarqueeOffset);
+  window.addEventListener("resize", refreshMarquee);
+  rafId = requestAnimationFrame(tick);
+
+  window.addEventListener("beforeunload", () => {
+    if (rafId) cancelAnimationFrame(rafId);
+    clearTimeout(resumeTimer);
+  });
 }
 
 if (document.readyState === "loading") {

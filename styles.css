@@ -412,9 +412,17 @@ body {
 
 .demo-blank-photos-shell {
   width: 100%;
-  overflow: hidden;
+  overflow-x: auto;
+  overflow-y: hidden;
+  -webkit-overflow-scrolling: touch;
+  touch-action: pan-x;
+  scrollbar-width: none;
   position: relative;
   padding: 6px 0;
+}
+
+.demo-blank-photos-shell::-webkit-scrollbar {
+  display: none;
 }
 
 .demo-blank-photos-shell::before,
@@ -441,9 +449,6 @@ body {
   display: flex;
   gap: 18px;
   width: max-content;
-  animation: photos-marquee 80s linear infinite;
-  animation-iteration-count: infinite;
-  will-change: transform;
 }
 
 .demo-blank-photo {
@@ -460,23 +465,3 @@ body {
   pointer-events: none;
 }
 
-@media (hover: hover) {
-  .demo-blank-photos-shell:hover .demo-blank-photos-track {
-    animation-play-state: paused;
-  }
-}
-
-@media (max-width: 768px) {
-  .demo-blank-photos-track {
-    animation-duration: 100s;
-  }
-}
-
-@keyframes photos-marquee {
-  0% {
-    transform: translate3d(0, 0, 0);
-  }
-  100% {
-    transform: translate3d(var(--marquee-offset, -50%), 0, 0);
-  }
-}
