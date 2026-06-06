@@ -465,3 +465,137 @@ body {
   pointer-events: none;
 }
 
+/* Lokasyon */
+.demo-floral-location-section {
+  background-color: #342c1b;
+  padding: 0 0 clamp(36px, 6vw, 56px);
+}
+
+.demo-floral-divider--full {
+  width: 100%;
+  height: 1px;
+  margin: clamp(20px, 4vw, 32px) 0 clamp(24px, 5vw, 36px);
+  background: linear-gradient(
+    90deg,
+    rgba(247, 253, 248, 0),
+    rgba(247, 253, 248, 0.45) 18% 82%,
+    rgba(247, 253, 248, 0)
+  );
+}
+
+.demo-floral-location {
+  width: min(860px, 92vw);
+  --location-media-height: clamp(200px, 42vw, 300px);
+  margin: 0 auto;
+  text-align: center;
+  color: #f7fdf8;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(10px, 2.5vw, 16px);
+}
+
+.demo-blank-location-head {
+  grid-column: 1 / -1;
+  display: grid;
+  justify-items: center;
+  gap: 8px;
+  text-align: center;
+}
+
+.demo-blank-location-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 999px;
+  border: 1px solid rgba(247, 253, 248, 0.45);
+  display: grid;
+  place-items: center;
+  background: transparent;
+}
+
+.demo-blank-location-icon img {
+  width: 24px;
+  height: 24px;
+  display: block;
+}
+
+.demo-blank-location-head h2 {
+  margin: 0;
+  font-family: var(--hero-playfair);
+  font-size: clamp(28px, 5vw, 35px);
+  font-style: italic;
+  font-weight: 500;
+  letter-spacing: 0.3px;
+  color: #f7fdf8;
+}
+
+.demo-blank-location-head p {
+  margin: 0;
+  font-family: var(--hero-cormorant);
+  font-size: clamp(18px, 2.6vw, 24px);
+  font-style: italic;
+  line-height: 1.5;
+  color: rgba(247, 253, 248, 0.9);
+}
+
+.demo-blank-location-time {
+  display: block;
+  font-family: var(--hero-cormorant);
+  font-size: clamp(16px, 2.4vw, 22px);
+  font-style: italic;
+  line-height: 1.5;
+  color: rgba(247, 253, 248, 0.85);
+}
+
+.demo-blank-location-media,
+.demo-blank-location-mapframe {
+  width: 100%;
+  height: var(--location-media-height);
+  overflow: hidden;
+  border: 1px solid rgba(247, 253, 248, 0.25);
+}
+
+.demo-blank-location-media img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+}
+
+.demo-blank-location-mapframe iframe {
+  width: 100%;
+  height: 100%;
+  border: 0;
+  display: block;
+}
+
+.demo-floral-location-actions {
+  grid-column: 1 / -1;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px;
+  margin-top: clamp(8px, 2vw, 14px);
+}
+
+.demo-blank-location-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px 22px;
+  font-family: var(--hero-cormorant);
+  font-size: clamp(16px, 2.2vw, 19px);
+  font-style: italic;
+  font-weight: 400;
+  letter-spacing: 0.04em;
+  text-decoration: none;
+  color: #f7fdf8;
+  background: transparent;
+  border: 1px solid rgba(247, 253, 248, 0.7);
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.demo-blank-location-btn:hover {
+  background: rgba(247, 253, 248, 0.08);
+}
+
