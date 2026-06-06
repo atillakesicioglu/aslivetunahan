@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="tr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dream Davetiye</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;1,400&family=Gwendolyn:wght@400&family=Playfair+Display&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div
+      class="demo-blank-hero"
+      id="hero"
+      style="
+        background-image: url('assets/dream-hero.webp');
+        --vintage-hero-mobile: url('assets/dream-hero.webp');
+        background-color: rgb(254, 245, 221);
+        background-size: cover;
+        background-position: center center;
+        background-repeat: no-repeat;
+      "
+    >
+      <video
+        class="demo-vintage-hero-video"
+        src="assets/dream-hero-mobile.mp4"
+        autoplay
+        loop
+        playsinline
+        preload="metadata"
+        poster="assets/dream-hero.webp"
+        aria-hidden="true"
+      ></video>
+
+      <div class="demo-blank-title">
+        <span class="demo-blank-title-top">Evliliğimizi birlikte kutlamak için davetlisiniz.</span>
+        <span class="demo-modern-couple-row">
+          <span class="demo-blank-title-main demo-blank-title-name"> Aslı</span>
+          <span class="demo-blank-title-amp">&amp;</span>
+          <span class="demo-blank-title-main demo-blank-title-name"> Tunahan</span>
+        </span>
+        <span class="demo-blank-title-family">Ayşe &amp; Murat Yağmuroğlu • Özlem &amp; Ahmet Köse</span>
+        <span class="demo-blank-title-date">25 Temmuz 2026</span>
+        <button type="button" class="demo-blank-title-cta-btn">Katılımını onayla</button>
+        <span class="demo-blank-title-chevron" aria-hidden="true">⌄</span>
+      </div>
+
+      <span class="demo-blank-title-divider-full" aria-hidden="true"></span>
+    </div>
+
+    <div class="demo-floral-divider demo-floral-divider-fade--full demo-vintage-hero-countdown-divider" aria-hidden="true"></div>
+
+    <section class="demo-floral-countdown" id="countdown">
+      <div class="demo-blank-countdown">
+        <span class="demo-blank-countdown-title">Geri sayım</span>
+        <span class="demo-blank-countdown-subtitle">25 Temmuz 2026 düğün tarihi</span>
+        <div class="demo-blank-countdown-grid" id="countdownGrid">
+          <div class="demo-blank-countdown-card">
+            <div class="demo-blank-countdown-value" data-unit="days">--</div>
+            <div class="demo-blank-countdown-label">gün</div>
+          </div>
+          <div class="demo-blank-countdown-card">
+            <div class="demo-blank-countdown-value" data-unit="hours">--</div>
+            <div class="demo-blank-countdown-label">saat</div>
+          </div>
+          <div class="demo-blank-countdown-card">
+            <div class="demo-blank-countdown-value" data-unit="minutes">--</div>
+            <div class="demo-blank-countdown-label">dakika</div>
+          </div>
+          <div class="demo-blank-countdown-card">
+            <div class="demo-blank-countdown-value" data-unit="seconds">--</div>
+            <div class="demo-blank-countdown-label">saniye</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="demo-vintage-countdown-divider" aria-hidden="true">
+      <img src="assets/dream-countdown-divider.webp" alt="" />
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
