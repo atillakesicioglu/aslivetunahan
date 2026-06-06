@@ -30,3 +30,53 @@ function updateCountdown() {
 
 updateCountdown();
 setInterval(updateCountdown, 1000);
+
+function initPhotosMarquee() {
+  const track = document.querySelector(".demo-blank-photos-track");
+  if (!track) return;
+
+  const items = [...track.children];
+  if (items.length === 0) return;
+
+  const halfCount = Math.floor(items.length / 2);
+  if (halfCount === 0) return;
+
+  function setMarqueeOffset() {
+    const loopStart = items[0];
+    const loopRepeat = items[halfCount];
+    if (!loopStart || !loopRepeat) return;
+
+    const offset = loopRepeat.offsetLeft - loopStart.offsetLeft;
+    if (offset > 0) {
+      track.style.setProperty("--marquee-offset", `-${offset}px`);
+    }
+  }
+
+  function refreshMarquee() {
+    setMarqueeOffset();
+    track.style.animation = "none";
+    void track.offsetWidth;
+    track.style.animation = "";
+  }
+
+  const images = track.querySelectorAll("img");
+  let pendingImages = 0;
+
+  images.forEach((img) => {
+    if (img.complete) return;
+    pendingImages += 1;
+    img.addEventListener("load", () => {
+      pendingImages -= 1;
+      if (pendingImages === 0) refreshMarquee();
+    });
+  });
+
+  refreshMarquee();
+  window.addEventListener("resize", setMarqueeOffset);
+}
+
+if (document.readyState === "loading") {
+  document.addEventListener("DOMContentLoaded", initPhotosMarquee);
+} else {
+  initPhotosMarquee();
+}

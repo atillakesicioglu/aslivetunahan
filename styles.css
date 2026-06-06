@@ -439,14 +439,15 @@ body {
 
 .demo-blank-photos-track {
   display: flex;
+  gap: 18px;
   width: max-content;
-  animation: photos-marquee 55s linear infinite;
+  animation: photos-marquee 80s linear infinite;
+  animation-iteration-count: infinite;
   will-change: transform;
 }
 
 .demo-blank-photo {
   flex: 0 0 min(240px, 70vw);
-  margin-right: 18px;
   aspect-ratio: 3 / 3.4;
   overflow: hidden;
 }
@@ -467,7 +468,7 @@ body {
 
 @media (max-width: 768px) {
   .demo-blank-photos-track {
-    animation-duration: 25s;
+    animation-duration: 100s;
   }
 }
 
@@ -476,6 +477,6 @@ body {
     transform: translate3d(0, 0, 0);
   }
   100% {
-    transform: translate3d(-50%, 0, 0);
+    transform: translate3d(var(--marquee-offset, -50%), 0, 0);
   }
 }
