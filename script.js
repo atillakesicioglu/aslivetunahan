@@ -184,7 +184,105 @@ function initRsvpForm() {
   });
 }
 
+function initIntro() {
+  const overlay = document.getElementById("introOverlay");
+  const video = document.getElementById("envelopeVideo");
+  const music = document.getElementById("bgMusic");
+  const musicToggle = document.getElementById("musicToggle");
+
+  if (!overlay || !video || !music) {
+    return;
+  }
+
+  video.autoplay = false;
+  video.pause();
+  video.currentTime = 0;
+  music.pause();
+
+  let started = false;
+  let finished = false;
+
+  function lockScroll() {
+    document.documentElement.classList.add("intro-lock");
+    document.body.classList.add("intro-lock");
+  }
+
+  function unlockScroll() {
+    document.documentElement.classList.remove("intro-lock");
+    document.body.classList.remove("intro-lock");
+  }
+
+  function finishIntro() {
+    if (finished) {
+      return;
+    }
+
+    finished = true;
+    overlay.classList.add("is-hidden");
+    unlockScroll();
+
+    if (musicToggle) {
+      musicToggle.hidden = false;
+    }
+
+    window.setTimeout(() => {
+      overlay.remove();
+    }, 700);
+  }
+
+  async function startIntro() {
+    if (started) {
+      return;
+    }
+
+    started = true;
+    overlay.classList.add("is-playing");
+    video.currentTime = 0;
+
+    try {
+      await video.play();
+    } catch {
+      finishIntro();
+      return;
+    }
+
+    try {
+      music.currentTime = 0;
+      await music.play();
+    } catch {
+      // Mobil tarayıcılar bazen ikinci play çağrısını reddedebilir.
+    }
+  }
+
+  lockScroll();
+
+  overlay.addEventListener("pointerup", (event) => {
+    if (event.pointerType === "mouse" && event.button !== 0) {
+      return;
+    }
+
+    startIntro();
+  });
+
+  video.addEventListener("ended", finishIntro);
+
+  if (musicToggle) {
+    musicToggle.addEventListener("click", () => {
+      if (music.paused) {
+        music.play().catch(() => {});
+        musicToggle.classList.remove("is-muted");
+        musicToggle.setAttribute("aria-label", "Müziği kapat");
+      } else {
+        music.pause();
+        musicToggle.classList.add("is-muted");
+        musicToggle.setAttribute("aria-label", "Müziği aç");
+      }
+    });
+  }
+}
+
 function initPage() {
+  initIntro();
   initPhotosMarquee();
   initRsvpForm();
 }
