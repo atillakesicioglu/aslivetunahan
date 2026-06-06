@@ -367,3 +367,115 @@ body {
     margin-top: -3px;
   }
 }
+
+/* Hikayemiz + foto galerisi */
+.demo-floral-photos {
+  background-color: #342c1b;
+  padding: clamp(32px, 6vw, 56px) 0 clamp(28px, 5vw, 48px);
+  display: grid;
+  justify-items: center;
+  gap: clamp(16px, 3vw, 28px);
+}
+
+.demo-floral-story {
+  width: min(860px, 92vw);
+  text-align: center;
+  color: #f7fdf8;
+  display: grid;
+  gap: 12px;
+}
+
+.demo-floral-story h2 {
+  margin: 0;
+  font-family: var(--hero-playfair);
+  font-size: clamp(28px, 5vw, 35px);
+  font-style: italic;
+  font-weight: 500;
+  letter-spacing: 0.3px;
+  color: #f7fdf8;
+}
+
+.demo-floral-story p {
+  margin: 0;
+  font-family: var(--hero-cormorant);
+  font-size: clamp(16px, 2.2vw, 20px);
+  line-height: 1.7;
+  color: rgba(247, 253, 248, 0.85);
+}
+
+.demo-floral-divider {
+  width: min(860px, 92vw);
+  height: 1px;
+  background: rgba(247, 253, 248, 0.35);
+  margin: 0;
+}
+
+.demo-blank-photos-shell {
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+  padding: 6px 0;
+}
+
+.demo-blank-photos-shell::before,
+.demo-blank-photos-shell::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: linear-gradient(180deg, rgba(247, 253, 248, 0), rgba(247, 253, 248, 0.9), rgba(247, 253, 248, 0));
+  pointer-events: none;
+  z-index: 2;
+}
+
+.demo-blank-photos-shell::before {
+  left: 0;
+}
+
+.demo-blank-photos-shell::after {
+  right: 0;
+}
+
+.demo-blank-photos-track {
+  display: flex;
+  width: max-content;
+  animation: photos-marquee 55s linear infinite;
+  will-change: transform;
+}
+
+.demo-blank-photo {
+  flex: 0 0 min(240px, 70vw);
+  margin-right: 18px;
+  aspect-ratio: 3 / 3.4;
+  overflow: hidden;
+}
+
+.demo-blank-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  pointer-events: none;
+}
+
+@media (hover: hover) {
+  .demo-blank-photos-shell:hover .demo-blank-photos-track {
+    animation-play-state: paused;
+  }
+}
+
+@media (max-width: 768px) {
+  .demo-blank-photos-track {
+    animation-duration: 25s;
+  }
+}
+
+@keyframes photos-marquee {
+  0% {
+    transform: translate3d(0, 0, 0);
+  }
+  100% {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
